@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HALFPAST — made for the moments in-between</title>
+<meta name="description" content="HALFPAST is a ready-to-drink iced oat latte made for the moments in-between. Currently in pilot, launching soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-hero: #826DEE;
+    --bg-hero-deep: #6A54D6;
+    --cream: #FBF3EA;
+    --maroon: #590B0B;
+    --ink: #262322;
+    --ink-soft: #57524F;
+    --white: #FFFDFB;
+    --chrome-3: #8a8b91;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Archivo', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+
+  ::selection{ background: var(--maroon); color: var(--white); }
+  :focus-visible{ outline: 2px solid var(--maroon); outline-offset: 3px; }
+
+  .wrap{ max-width: 1180px; margin:0 auto; padding: 0 32px; width:100%; }
+
+  .eyebrow{
+    font-weight:700;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: relative; z-index: 30;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 24px 32px;
+  }
+  .logo{
+    font-family:'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .nav-badge{
+    font-size: 0.62rem;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--maroon);
+    color: var(--white);
+    white-space:nowrap;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background: radial-gradient(120% 100% at 50% 15%, var(--bg-hero) 0%, var(--bg-hero-deep) 100%);
+    padding: 10px 0 0;
+    overflow:hidden;
+    min-height: 92svh;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .hero-content{
+    position:relative; z-index: 3;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align:center;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding: 90px 26px 160px;
+  }
+  .hero .eyebrow{ color: rgba(255,253,251,0.85); margin-bottom: 22px; }
+
+  h1{
+    font-family:'Archivo', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: clamp(2.1rem, 6vw, 4rem);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: #FF99DC;
+    max-width: 15ch;
+  }
+
+  .hero-sub{
+    margin: 22px auto 0;
+    font-weight:600;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: rgba(255,253,251,0.92);
+    max-width: 36ch;
+    line-height: 1.5;
+  }
+
+  .email-pill{
+    margin: 36px auto 0;
+    display:flex; align-items:center;
+    width: 100%;
+    max-width: 420px;
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    border-radius: 999px;
+    padding: 6px 6px 6px 22px;
+    box-shadow: 6px 6px 0 var(--maroon);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .email-pill:focus-within{ transform: translate(-3px,-3px); box-shadow: 9px 9px 0 var(--maroon); }
+  .email-pill input{
+    flex:1; border:none; outline:none; background:transparent;
+    font-family:'Archivo'; font-weight:600; font-size:0.96rem; color: var(--ink);
+    min-width: 0;
+  }
+  .email-pill input::placeholder{ color: rgba(38,35,34,0.4); font-weight:500; }
+  .email-pill button{
+    flex-shrink:0;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--maroon);
+    color: var(--white);
+    font-size: 1.15rem;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .email-pill button:hover{ background: var(--ink); transform: scale(1.06); }
+  .hero-note{ margin-top:14px; font-size:0.74rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color: rgba(255,253,251,0.85); }
+  .form-msg{ margin-top:14px; font-size:0.9rem; color: var(--white); font-weight:700; display:none; }
+  .form-msg.show{ display:block; }
+
+  .wave{
+    position:absolute; left:0; right:0; bottom:-2px; z-index:1;
+    width:100%; height: auto; line-height:0;
+  }
+  .wave svg{ width:100%; height: 90px; display:block; }
+
+  .ticker{
+    background: var(--cream);
+    overflow:hidden;
+    white-space:nowrap;
+    padding: 26px 0 6px;
+  }
+  .ticker-track{
+    display:inline-block;
+    animation: scroll-ticker 24s linear infinite;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--maroon);
+  }
+  .ticker-track span.word{ margin: 0 28px; }
+  .ticker-track span.star{ color: var(--maroon); opacity: 0.7; }
+  @keyframes scroll-ticker{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+
+  /* ---------- STATEMENT ---------- */
+  .statement{
+    background: var(--cream);
+    padding: 46px 0 90px;
+    text-align:center;
+  }
+  .statement p{
+    font-family:'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.25rem, 2.6vw, 1.9rem);
+    line-height: 1.5;
+    max-width: 34ch;
+    margin: 0 auto;
+    color: var(--ink);
+  }
+  .statement p em{
+    font-style: normal;
+    color: var(--maroon);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer.mini-foot{
+    padding: 26px 24px 34px;
+    text-align:center;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    font-weight:600;
+    background: var(--cream);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .hero-content{ padding: 80px 22px 150px; }
+  }
+
+  @media (max-width: 520px){
+    .hero-content{ padding: 70px 18px 90px; }
+    h1{ font-size: clamp(1.9rem, 8vw, 2.6rem); }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <nav>
+    <div class="logo">Halfpast</div>
+    <div class="nav-badge">Pilot · Launching soon</div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="eyebrow">Iced oat latte · Ready to drink</div>
+    <h1>Your 3pm is about to change.</h1>
+    <p class="hero-sub">HALFPAST is a ready-to-drink iced oat latte, made for the moments in-between.</p>
+
+    <form class="email-pill" id="emailForm">
+      <input type="email" id="emailInput" placeholder="you@somewhere.com" required aria-label="Email address">
+      <button type="submit" aria-label="Submit email">→</button>
+    </form>
+    <div class="form-msg" id="formMsg">You're on the list. See you in the in-between.</div>
+    <p class="hero-note">Currently in pilot — get early access</p>
+  </div>
+
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,50 C180,90 360,10 600,30 C840,50 1000,90 1200,45 C1320,20 1400,25 1440,35 L1440,90 L0,90 Z" fill="#FBF3EA"/>
+    </svg>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="word">Smooth &amp; creamy</span><span class="star">✦</span>
+    <span class="word">Ready to drink</span><span class="star">✦</span>
+    <span class="word">Made for the in-between</span><span class="star">✦</span>
+    <span class="word">Iced oat latte</span><span class="star">✦</span>
+    <span class="word">Smooth &amp; creamy</span><span class="star">✦</span>
+    <span class="word">Ready to drink</span><span class="star">✦</span>
+    <span class="word">Made for the in-between</span><span class="star">✦</span>
+    <span class="word">Iced oat latte</span><span class="star">✦</span>
+  </div>
+</div>
+
+<section class="statement">
+  <div class="wrap">
+    <p>Smooth. Creamy. Just really good <em>coffee.</em></p>
+  </div>
+</section>
+
+<footer class="mini-foot">&copy; 2026 HALFPAST — made for the moments in-between</footer>
+
+<script>
+  // === Google Form connection ===
+  // 1. Replace GOOGLE_FORM_URL below with your form's viewform link,
+  //    but change "viewform" to "formResponse" at the end.
+  //    e.g. https://docs.google.com/forms/d/e/1FAIpQL.../formResponse
+  // 2. Replace ENTRY_ID with the entry.XXXXXXXXX number from your email field.
+  const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdK6l_MJ3V6H4l2MUeF7wIK_xD1epbi8J39EqEHAvtxi75JNQ/formResponse';
+  const ENTRY_ID = 'entry.894075859';
+
+  const form = document.getElementById('emailForm');
+  const msg = document.getElementById('formMsg');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const input = document.getElementById('emailInput');
+    const email = input.value;
+    if(!email) return;
+
+    const body = new URLSearchParams();
+    body.append(ENTRY_ID, email);
+
+    fetch(GOOGLE_FORM_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Google Forms blocks reading the response, but the submit still goes through
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body.toString()
+    }).catch(function(){ /* no-cors means we can't detect real errors, so we still show success below */ });
+
+    msg.classList.add('show');
+    form.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
